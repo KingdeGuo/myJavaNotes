@@ -153,5 +153,29 @@
 ## 3.10 数组
 
 - 数组的长度不要求是常量
+
 - 如果程序运行中需要经常扩展数组的大小，就应该使用`ArrayList`
-- 
+
+- `for each`循环语句的循环变量将会遍历数组中的每个元素，而不是下标值
+
+- 关于`Arrays.copyOf()`
+
+  - 示例数组
+
+    ```java
+    int[] arr = {1, 2, 3, 4, 5};
+    int[] copy = Arrays.copyOf(arr, length);
+    ```
+
+  - 如果`length`小于数组长度，那么只会复制到`length`的长度
+
+  - 如果`length`大于数组长度，那么可以用来增加数组的大小
+
+  - 注意，拷贝之后的数组和原来的数组指向同一对象
+
+- Arrays常用API
+
+  ![image-20210322165954532](C:\Users\asus\AppData\Roaming\Typora\typora-user-images\image-20210322165954532.png)
+
+- 想要快速打印多为数组，可以调用`Arrays.deepToString(arr)`
+
