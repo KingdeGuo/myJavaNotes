@@ -62,10 +62,35 @@
 ## 4.3 用户字定义类
 
 - 构造器特点
+
   - 与类名相同
   - 每个类可以有一个以上的构造器
   - 构造器可以有0个、1个或多个参数
   - 构造器没有返回值
   - 构造器总是伴随着new操作符一起调用
+
+- 关于null
+
+  ```java
+  class Person{
+      private String name;
+      
+      public Person(){}
+      
+      // 严格型
+      public Person(String name) {
+          Objects.requireNonNull(name, "name could not be null");
+      }
+  }
+  ```
+
+  在Java9中，还可以这样写
+
+  ```java
+  this.name = Objects.requireNonNullElse(name, "default vale");
+  ```
+
+- 在Java中，所有的方法都必须在类的内部进行定义，但并不表示它们是内联方法。是否将某个方法设置为内联是Java虚拟机的任务。即时编译器会将那些简短的，经常调用且没有被覆盖的方法调用，并进行优化。
+
 - 
 
