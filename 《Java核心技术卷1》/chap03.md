@@ -18,7 +18,7 @@
   - float
   - double
   - char
-  - boolen
+  - boolean
 
 - 可以使用十六进制表示浮点数的值。例如`0.125`可以表示为`0x1.0p-3`.
 
@@ -52,4 +52,20 @@
 ## 3.5 运算符
 
 - 对于使用`strictfp`关键字标记的方法必须使用严格的浮点计算来生成可再生的结果。
-- 
+
+- 静态导入
+
+  - 使用静态导入之前
+
+  ```java
+  System.out.println("I choose the num: " + Math.sqrt(4));
+  ```
+
+  - 使用静态导入之后
+
+  ```java
+  import static java.lang.Math.*;
+  System.out.println("I choose the num: " + sqrt(4));
+  ```
+
+- 如果得到一个完全可预测的结果比运行速度更重要的话，那么就应该使用`StrictMath`类。
