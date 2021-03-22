@@ -175,7 +175,7 @@
 
 - Arrays常用API
 
-  ![image-20210322165954532](C:\Users\asus\AppData\Roaming\Typora\typora-user-images\image-20210322165954532.png)
+  ![image-20210322165954532](https://raw.githubusercontent.com/KingdeGuo/myPictureBed/main/img_upload202103/22/170204-592762.png)
 
 - 想要快速打印多为数组，可以调用`Arrays.deepToString(arr)`
 
