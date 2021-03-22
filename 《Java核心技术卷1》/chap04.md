@@ -92,5 +92,40 @@
 
 - 在Java中，所有的方法都必须在类的内部进行定义，但并不表示它们是内联方法。是否将某个方法设置为内联是Java虚拟机的任务。即时编译器会将那些简短的，经常调用且没有被覆盖的方法调用，并进行优化。
 
+- final字段
+
+  - 可以将实例字段设置为final。该字段必须在构造对象时初始化。如果将类的实例字段设置为final，那么这个字段就没有setter方法了。
+
+    ```java
+    class Person{
+        final String name = "kingdeguo";
+    
+        public String getName() {
+            return name;
+        }
+    }
+    ```
+
+  - final关键字只是表示存储在变量中的对象中的对象的引用不会再指示另一个不同的对象。但是这个对象是可以改变的。
+
+    ```java
+    class Person{
+        String name = "kingdeguo";
+    
+        public String getName() {
+            return name;
+        }
+        
+        void changeName(){
+            name = name + ", hello";
+        }
+    }
+    ```
+
+- main方法不对任何对象进行操作。事实上，在启动程序时还没有任何对象。静态的main方法将执行并构造程序所需的对象
+
+## 4.5 方法参数
+
+- Java程序设计语言总是按值调用
 - 
 
