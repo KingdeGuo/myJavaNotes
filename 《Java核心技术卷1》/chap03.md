@@ -72,7 +72,7 @@
 
 - 类型转化
 
-  ![image-20210322160728071](C:\Users\asus\AppData\Roaming\Typora\typora-user-images\image-20210322160728071.png)
+  ![image-20210322160728071](https://raw.githubusercontent.com/KingdeGuo/myPictureBed/main/img_upload202103/22/161515-559864.png)
 
 - 位运算
 
@@ -83,6 +83,17 @@
     ```
 
 - 字符串
+
+  - length()
+
+  ```java
+  String str = "我的名字是\uD835\uDD46";
+  System.out.println(str);
+  // length()返回的是采用UTF-16编码给定字符串所需要的代码单元数量
+  System.out.println(str.length());
+  // 要想获得实际的长度，可以使用下面的方法
+  System.out.println(str.codePointCount(0, str.length()));
+  ```
 
   - 
 
