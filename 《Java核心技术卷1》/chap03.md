@@ -95,5 +95,63 @@
   System.out.println(str.codePointCount(0, str.length()));
   ```
 
-  - 
+  - 根据码点构造字符串
 
+  ```java
+  String str = new String(codePoints, 0, codePoints.length);
+  ```
+
+- 常用API
+
+  ![image-20210322163630869](https://raw.githubusercontent.com/KingdeGuo/myPictureBed/main/img_upload202103/22/163632-391397.png)
+
+## 3.7 输入与输出
+
+- 读取文件
+
+  ```java
+  try {
+      Scanner readFile = new Scanner(Path.of("a.txt"), StandardCharsets.UTF_8);
+  } catch (IOException e) {
+      e.printStackTrace();
+  }
+  ```
+
+## 3.8 控制流程
+
+- Java中不允许嵌套定义变量
+
+  ```java
+  int n;
+  {
+  // this is wrong
+  // you have defined n before
+  //	int n;
+  }
+  ```
+
+- 检测两个浮点数相等时要格外小心
+
+  ```
+  for (float i=0.1; i!=10; i+=0.1){
+  	// statements
+  }
+  // 上面这个循环将永远不会停止，
+  ```
+
+- fallthrough
+
+  - 在编译时，可以添加`javac -Xlint:fallthrough Test.java`来让编译器检测是否少写了`break`语句。
+  - 如果确实想要使用`fallthrough`的方式，则可以加上`@SuppressWarnings("fall through")`的注解。
+
+## 3.9 大数
+
+- 常用API
+
+  ![image-20210322164830487](https://raw.githubusercontent.com/KingdeGuo/myPictureBed/main/img_upload202103/22/164830-779901.png)
+
+## 3.10 数组
+
+- 数组的长度不要求是常量
+- 如果程序运行中需要经常扩展数组的大小，就应该使用`ArrayList`
+- 
