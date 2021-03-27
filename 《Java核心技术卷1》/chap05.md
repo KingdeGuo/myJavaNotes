@@ -259,4 +259,144 @@
 
 - 绝大多数toString方法都遵循这样的格式：类的名字，随后是一对方括号括起来的字段值。但是最好通过getClass().getName()来获取类名的字符串。
 
+- 一旦能够确认数组列表的大小将保持恒定，不再发生变化，那么可以调用trimToSize()方法，这个方法将存储块的大小调整为保存当前元素数量所需的空间的大小。垃圾回收器将回收多余的存储空间。
+
+  ArrayList常用API
+
+  ![image-20210327192050372](https://raw.githubusercontent.com/KingdeGuo/myPictureBed/main/img_upload202103/27/192052-96614.png)
+
+  可以使用toArray()方法将数组元素返回到一个数组中。
+
+- 包装器类是不可变的，即一旦够早了包装器，就不允许更改包装在其中的值。同时，包装器类还是final，因此不能派生他们的子类。
+
+- 如果在一个表达式中同时使用Integer，Double，那么Integer就会拆箱成int，然后转化成double，再装箱成Double。
+
+- 装箱和拆箱是编译器要做的工作，而不是虚拟机。编译器在生成类的字节码时会插入必要的方法调用。虚拟机只是执行这些字节码。
+
+- 将字符串转化成整性
+
+  int x = Integer.parseInt(s);
+
+  parseInt()是一个静态方法，虽然和Integer没有关系，但是Integer是放置这个方法的好地方。
+
+- Integer常用API
+
+  ![image-20210327192948388](https://raw.githubusercontent.com/KingdeGuo/myPictureBed/main/img_upload202103/27/192949-817185.png)
+
+- 比较两个枚举值时，并不需要调用equals，直接使用==就可以。
+
+  枚举的构造器总是私有的，如果将枚举的构造器声明为protected，编译器就会报错。
+
+  代码示例
+
+  ```java
+  import java.util.*;
+  
+  /**
+   * This program demonstrates enumerated types.
+   * @version 1.0 2004-05-24
+   * @author Cay Horstmann
+   */
+  public class EnumTest
+  {  
+     public static void main(String[] args)
+     {  
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter a size: (SMALL, MEDIUM, LARGE, EXTRA_LARGE) ");
+        String input = in.next().toUpperCase();
+        Size size = Enum.valueOf(Size.class, input);
+        System.out.println("size=" + size);
+        System.out.println("abbreviation=" + size.getAbbreviation());
+        if (size == Size.EXTRA_LARGE)
+           System.out.println("Good job--you paid attention to the _.");      
+     }
+  }
+  
+  enum Size
+  {
+     SMALL("S"), MEDIUM("M"), LARGE("L"), EXTRA_LARGE("XL");
+  
+     private Size(String abbreviation) { this.abbreviation = abbreviation; }
+     public String getAbbreviation() { return abbreviation; }
+  
+     private String abbreviation;
+  }
+  ```
+
+  Size.SMALL.toString()将返回字符串“SMALL”。
+
+  该方法的逆方法是valueOf(); Size s = Enum.valueOf(Size.class, "SMALL");
+
+  values方法返回所有值。
+
+  ordinal方法返回enum声明中枚举常量的位置，位置从0开始计数。
+
+## 反射
+
+- 能够分析类能力的程序称为反射。
+
+  反射的一些应用
+
+  - 在运行时分析类的能力
+  - 在运行时检查对象，例如，编写一个适用于所有类的toString()方法
+  - 实现泛型数组操作代码
+  - 利用Method对象，这个对象很像C++中的函数指针
+
+- 在程序运行期间，Java运行时系统始终为所有对象维护一个运行时类标识信息，这个信息会跟踪每个对象所属的类。虚拟机利用运行时类型信息选择要执行的正确的方法
+
+- Object的`getClass()`方法会返回一个Class类型的实例。
+
+  例如
+
+  ```java
+  public class Test {
+      public static void main(String[] args) {
+          String s = "kingdeguo";
+          System.out.println(s.getClass().getName());
+      }
+  }
+  ```
+
+  还可以使用静态方法forName获得类名对应的Class对象。
+
+  ```java
+  public class Test {
+      public static void main(String[] args) throws ClassNotFoundException {
+          String className = "java.util.Random";
+          Class rand = Class.forName(className);
+          System.out.println(rand.getName());
+      }
+  }
+  ```
+
+- 可以使用下面的技巧给用户一种启动比较快的假象：首先，显示一个启动画面，然后，通过调用Class.forName手动的加载其他类。
+
+- Class类实级上是一个泛型类，`Employee.class`的类型是`Class<Employee>`。
+
+- 虚拟机为每一个类型管理一个唯一的Class对象，因此，可以利用==运算符实现两个类对象的比较。
+
+  if (e.getClass() == Employee.class){}
+
+- 如果有一个Class对象，可以用它构造类的实例。
+
+  ```java
+  var className = "java.util.Random";
+  // 得到一个Constructor对象
+  Class cl = Class.forName(className);
+  // 得到一个实例
+  Object obj = cl.getConstructor().newInstance();
+  ```
+
+
+
+
+## 异常
+
+- 异常有两种类型
+  - 非检查型异常
+    - 例如越接错误或者访问null引用。
+    - 编译器并不期望你为这些异常提供处理器。
+  - 检查型异常
+    - 编译器会检查你是否知道这个异常并做好准备来处理后果。
 - 
+
