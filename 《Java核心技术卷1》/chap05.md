@@ -173,31 +173,31 @@
   - 如果子类可以有自己的相等性概念，则对称性需求将强制使用getClass检测
   - 如果由超类决定相等性概念，那么就可以使用instanceof检测，这样可以在不同子类的对象之间进行相等性比较。
 
-- 下面给出一个完美的equals方法建议
+- 下面给出一个完美的`equals`方法建议
 
-  - 显示参数名命为otherObject，稍后需要将他强制转化成另一个名为other的变量
+  - 显示参数名命为`otherObject`，稍后需要将他强制转化成另一个名为`other`的变量
 
-  - 检测this与otherObject是否相等。
+  - 检测`this`与`otherObject`是否相等。
 
-    if (this == otherObject) return true;
+    `if (this == otherObject) return true;`
 
     这条语句只是一个小优化，实际上，这是一种经常采用的行式，因为检查身份要比逐个比较字段开销小。
 
-  - 检测otherObject是否为null，如果为null，返回false，这项检测是必要的。
+  - 检测`otherObject`是否为`null`，如果为`null`，返回`false`，这项检测是必要的。
 
-    if (otherObject == null ) return false;
+    `if (otherObject == null ) return false;`
 
-  - 比较this与otherObject的类。如果equals的语义可以在子类中改变，就使用getClass检测
+  - 比较`this`与`otherObject`的类。如果equals的语义可以在子类中改变，就使用`getClass`检测
 
-    if (getClass() != otherObject.getClass() ) return false;
+    `if (getClass() != otherObject.getClass() ) return false;`
 
-    如果所有的子类都有相同的相等性语义，就可以使用instanceof检测。
+    如果所有的子类都有相同的相等性语义，就可以使用`instanceof`检测。
 
-  - 将otherObject强制转化为相对应类型的变量
+  - 将`otherObject`强制转化为相对应类型的变量
 
-    ClassName other = (ClassName) otherObject;
+    `ClassName other = (ClassName) otherObject;`
 
-  - 现在根据相等性概念要求来比较字段。使用==比较基本类型字段，使用Objects.equals比较对象字段，如果所有字段都匹配，则返回true，否则返回false.
+  - 现在根据相等性概念要求来比较字段。使用==比较基本类型字段，使用`Objects.equals`比较对象字段，如果所有字段都匹配，则返回`true`，否则返回`false`.
 
     return filed1 == other.filed1
 
@@ -205,7 +205,7 @@
 
     ​	&& ...;
 
-    如果在子类中重新定义equals，就要在其中一个包含一个super.equals(other)调用。
+    如果在子类中重新定义`equals`，就要在其中一个包含一个`super.equals(other)`调用。
 
   - 
 
