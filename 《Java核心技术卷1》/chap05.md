@@ -207,5 +207,27 @@
 
     如果在子类中重新定义`equals`，就要在其中一个包含一个`super.equals(other)`调用。
 
-  - 
+- String类计算计算散列码的方法
+
+  ```java
+  int hash = 0;
+  for(int i=0l i<length(); ++i){
+      hash = 31*hash + charAt(i);
+  }
+  ```
+
+  由于hashcode方法定义在Object类中，因此每一个对象都有一个默认的散列码，其值对由对象的存储地址得出
+
+  ```java
+  String s1 = "kingdeguo";
+  String s2 = new String("kingdeguo");
+  
+  StringBuilder s3 = new StringBuilder(s1);
+  ```
+
+  s1和s2有相同的散列码，因为这个是根据内容算出来的。
+
+  但是s1和s3有不同的散列码，因为在StringBuilder中没有定义hashcode方法，而Object默认hashcode方法会从对象的存储地址得出散列码
+
+- 
 
