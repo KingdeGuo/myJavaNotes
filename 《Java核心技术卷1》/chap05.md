@@ -207,6 +207,28 @@
 
     如果在子类中重新定义`equals`，就要在其中一个包含一个`super.equals(other)`调用。
 
+    ```java
+       public boolean equals(Object otherObject)
+       {
+          // a quick test to see if the objects are identical
+          if (this == otherObject) return true;
+    
+          // must return false if the explicit parameter is null
+          if (otherObject == null) return false;
+    
+          // if the classes don't match, they can't be equal
+          if (getClass() != otherObject.getClass()) return false;
+    
+          // now we know otherObject is a non-null Employee
+          Employee other = (Employee) otherObject;
+    
+          // test whether the fields have identical values
+          return Objects.equals(name, other.name) && salary == other.salary && Objects.equals(hireDay, other.hireDay);
+       }
+    ```
+
+    
+
 - String类计算计算散列码的方法
 
   ```java
@@ -229,5 +251,12 @@
 
   但是s1和s3有不同的散列码，因为在StringBuilder中没有定义hashcode方法，而Object默认hashcode方法会从对象的存储地址得出散列码
 
-- 
+- 最好使用null安全的方法Objects.hashcode。如果其参数为null，将返回0，否则返回对参数调用hashcode的结果。
 
+  使用DOuble.hashCode方法可以避免创建Double对象
+
+  可以使用Objects.hash(arg1, arg2, ...)来获取哈希
+
+- 绝大多数toString方法都遵循这样的格式：类的名字，随后是一对方括号括起来的字段值。但是最好通过getClass().getName()来获取类名的字符串。
+
+- 
