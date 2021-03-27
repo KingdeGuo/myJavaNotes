@@ -130,5 +130,82 @@
 
 ## 5.2 Object：所有类的超类
 
+- 可以使用Object类型的变量引用任何类型的对象。`Object obj = new Student(18,"kingdeguo");`，但是此时Object类型的变量只能当作各值的一个泛型容器。要想对其进行操作，还需要进行相应的强制类型转化`Student stu = (Studnet)obj`。
 
+- 所有类型，不管是对象数组还是**基本类型的数组**都扩展了Object类。
+
+- 为了防止字段为null的情况，需要使用`Object.equals`方法，如果两个参数都是`null`，`Objects.equals(a,b)`调用将返回`true`，其中一个为`null`，另一个不是返回`false`，两个都不是`null`，调用`a.equals(b);`
+
+  代码示例
+
+  ```java
+  @Override
+  public boolean equals(Object obj){
+      if(obj instanceof Student){
+          obj = (Student)obj; 
+      }else{
+          System.out.println("Wrong!");
+          return false;
+      }
+      
+      return Objects.equals(name, obj.name)
+          && id == obj.id;
+      
+  }
+  ```
+
+- Java语言规范要求equals方法具有以下特征
+
+  - 自反性
+  - 对称性
+  - 传递性
+  - 一致性
+  - 对于任意非空引用x，x.equals(null)应该返回false。
+
+- 请注意下面的例子
+
+  e.equals(m)
+
+  其中e是一个Employee类的实例，m是Manager类的实例，两者具有相同的姓名，薪水和雇佣日期，如果在Employee.equals中用instanceof进行检测，这个调用返回true，同时意味着反过来调用也需要返回true。
+
+  因此可以看到有两种完全不同的情形
+
+  - 如果子类可以有自己的相等性概念，则对称性需求将强制使用getClass检测
+  - 如果由超类决定相等性概念，那么就可以使用instanceof检测，这样可以在不同子类的对象之间进行相等性比较。
+
+- 下面给出一个完美的equals方法建议
+
+  - 显示参数名命为otherObject，稍后需要将他强制转化成另一个名为other的变量
+
+  - 检测this与otherObject是否相等。
+
+    if (this == otherObject) return true;
+
+    这条语句只是一个小优化，实际上，这是一种经常采用的行式，因为检查身份要比逐个比较字段开销小。
+
+  - 检测otherObject是否为null，如果为null，返回false，这项检测是必要的。
+
+    if (otherObject == null ) return false;
+
+  - 比较this与otherObject的类。如果equals的语义可以在子类中改变，就使用getClass检测
+
+    if (getClass() != otherObject.getClass() ) return false;
+
+    如果所有的子类都有相同的相等性语义，就可以使用instanceof检测。
+
+  - 将otherObject强制转化为相对应类型的变量
+
+    ClassName other = (ClassName) otherObject;
+
+  - 现在根据相等性概念要求来比较字段。使用==比较基本类型字段，使用Objects.equals比较对象字段，如果所有字段都匹配，则返回true，否则返回false.
+
+    return filed1 == other.filed1
+
+    ​	&& Objects.equals(field2, other.field2)
+
+    ​	&& ...;
+
+    如果在子类中重新定义equals，就要在其中一个包含一个super.equals(other)调用。
+
+  - 
 
