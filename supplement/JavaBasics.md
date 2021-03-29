@@ -35,7 +35,17 @@
   - 在响应性和VM性能方面，Oracle JDK提供了更好的性能。
   - Oracle JDK根据二进制代码许可协议获得许可，而Open JDK根据GPL v2许可获得许可。
 
+- 关于`switch`
+
+  ​	注意，不支持`long`
+
+  - 在JDK1.5之前，`switch(expr)`中，expr只能是`byte`，`short`, `char`, `int`
+  - 在JDK1.5中引入了枚举。
+  - 在JDK1.7中引入了字符串。
+
 - 
+
+  
 
   
 
