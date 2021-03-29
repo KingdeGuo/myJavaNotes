@@ -43,9 +43,19 @@
   - 在JDK1.5中引入了枚举。
   - 在JDK1.7中引入了字符串。
 
-- 
+- 下面代码有错吗
 
-  
+  ```java
+  short short1 = 1;
+  short1+=1;
+  System.out.println(short1);
+  ```
+
+  注意在执行`short1 += short1`时，`short1`会提升为`int`型，所以结果也是`int`型，需要强制转化才能转化成`short`型。
+
+  注意：上面是可以编译通过，因为`short1 += short1`相当于`short1 = (short)(short1+1)`，其中隐含了强制类型转化。
+
+- 
 
   
 
