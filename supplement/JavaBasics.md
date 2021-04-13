@@ -92,12 +92,19 @@
   - 创建独立于具体对象的域变量或方法
   - 用来行成静态代码块以优化程序性能
 
-  
+- String有哪些特性
 
-  
+  - 不变性
+  - 常量池优化
+  - `final`
 
-  
+- 为什么`String`类不可变：`String`类利用`final`修饰的`char`类型的数组存储字符。
 
-  
+- `String`类是`final`类，不可以被继承
 
-  
+- `String str = "o";`与`String str = new String("i");`不一样
+
+  前者会把`"o"`放在常量池中，后面的会放到堆中。
+
+- `String str = new String("xyz");`创建了两个字符对象，一个的静态区的"xyz"，一个是用new创建在堆上的对象。
+
