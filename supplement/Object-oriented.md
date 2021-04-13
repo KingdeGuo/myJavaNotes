@@ -100,3 +100,81 @@
 
 - `InputStream`，`OutputStream`是字节输入输出流
 - `Reader`，`Writer`是字符输入输出流
+
+
+
+- BIO、NIO、AIO分别是什么
+  - `BIO`是同步阻塞IO，简单方便，并发能力低
+  - `NIO`是同步非阻塞IO，传统IO的升级，客户端和服务端使用`Channel`进行通信，实现了多路复用。
+  - `AIO`是异步非阻塞IO，基于事件和回调机制。
+
+
+
+- 文件类常用的方法
+  - `Files.exists()`检测文件路径是否存在
+  - `Files.createFile()`创建文件
+  - `Files.createDictory()`创建文件夹
+  - `Files.delete()`删除文件
+  - `Files.copy()`复制文件
+  - `Files.move()`移动文件
+  - `Files.size()`查看文件个数
+  - `Files.read()`读取文件
+  - `Files.write()`写入文件
+
+
+
+- 什么是反射
+
+  反射是在运行过程中，
+
+  对任意一个类，都能知道这个类所具有的属性和方法；
+
+  对任意一个对象，都能够调用它的任意一个方法和属性
+
+  这种动态获取的信息即动态调用对象的方法的功能称为Java语言的反射机制。
+
+- 反射的优点：运行期间判断类型，动态加载类，提高代码灵活度。
+
+  反射的缺点：反射相当于一系列解释操作，通知JVM要做的事情，性能要比直接的Java代码慢的多。
+
+- 获取反射的三种方式
+
+  - 通过`new`对象实现反射机制
+  - 通过路径实现反射机制
+  - 通过类名实现反射机制
+
+  ```java
+  public class Demo {
+      public static void main(String[] args) throws ClassNotFoundException {
+          Person person = new Person();
+          Class obj1 = person.getClass();
+          System.out.println(">>> " + obj1.getName());
+  
+          Class obj2 = Class.forName("tempuse.t3.Person");
+          System.out.println(">>> " + obj2.getName());
+  
+          Class obj3 = Person.class;
+          System.out.println(">>> " + obj3.getName());
+      }
+  }
+  ```
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
