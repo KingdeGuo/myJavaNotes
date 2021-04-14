@@ -13,11 +13,6 @@
   - **阻塞**：一旦系统中出现阻塞现象，则可以根据实际情况来使用多线程技术提高运行效率
   - **依赖**：假如业务分为A和B两个部分，当A业务发生阻塞时，B业务不依赖A业务的执行结果，那么就可以使用多线程来提高运行效率。如果B业务依赖A业务，那么就不可以使用多线程。
 
-- 实现多线程的方式
-
-  - 继承`Thread`类
-  - 实现`Runnable`接口
-
 - 查看源代码我们可以看到`Thread`类也实现了`Runnable`接口，他们之间是多态关系。
 
   ```java
@@ -153,5 +148,55 @@
 
 ## 线程的随机性
 
+- 执行`start()`方法的顺序不代表线程启动的顺序。
+- 如果调用`thread.run()`，那么方法就不是异步执了，而是同步执行。
 
 
+
+## 实现多线程的方式
+
+- 继承`Thread`类
+
+  ```java
+  public class MyThread extends Thread {
+  
+      @Override
+      public void run() {
+          super.run();
+  		// your codes
+      }
+  }
+  ```
+
+  Thread的构造器有如下几种行式
+
+  ```java
+  public Thread()
+  
+  public Thread(Runnable target)
+  
+  public Thread(ThreadGroup group, Runnable target) 
+  
+  public Thread(String name)
+  
+  public Thread(ThreadGroup group, String name) 
+  
+  public Thread(Runnable target, String name) 
+  
+  public Thread(ThreadGroup group, Runnable target, String name)
+  ```
+
+- 实现`Runnable`接口
+
+  ```java
+  public class MyThread implements Runnable {
+  
+      @Override
+      public void run() {
+          super.run();
+  		// your codes
+      }
+  }
+  ```
+
+- 
