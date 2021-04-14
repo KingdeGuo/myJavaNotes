@@ -199,4 +199,52 @@
   }
   ```
 
+- 注意下面的代码
+
+  ```java
+  MyRunable run = new MyRunable();
+  Thread t = new Thread(run);
+  t.start();
+  ```
+
+  通过查看源码我们可以看到
+
+  ```java
+      /**
+       * If this thread was constructed using a separate
+       * <code>Runnable</code> run object, then that
+       * <code>Runnable</code> object's <code>run</code> method is called;
+       * otherwise, this method does nothing and returns.
+       * <p>
+       * Subclasses of <code>Thread</code> should override this method.
+       *
+       * @see     #start()
+       * @see     #stop()
+       * @see     #Thread(ThreadGroup, Runnable, String)
+       */
+      @Override
+      public void run() {
+          if (target != null) {
+              target.run();
+          }
+      }
+  ```
+
+  首先判断`target`是否为`null`，如果不是则直接调用`target`的`run()`方法，而不是它的`start()`方法。
+
+  而且通过查看源代码可以看到
+
+  ```java
+      private void init(ThreadGroup g, Runnable target, String name,
+                        long stackSize, AccessControlContext acc,
+                        boolean inheritThreadLocals) {
+          // ...
+          this.target = target;
+          // ...
+      }
+  ```
+
+  `target`是在`init()`方法中完成初始化的。
+
 - 
+
