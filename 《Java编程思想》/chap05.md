@@ -2,6 +2,8 @@
 
 # 初始化与清理
 
+## 初始化部分
+
 - `new`表达式确实返回了对新建对象的引用，但构造器本身没有任何返回值。
 
 - 如果传入的数据类型（实际参数的类型）小于方法中声明的形式参数类型，实级数据类型 就会被提升。
@@ -95,4 +97,36 @@
       - 不足之处1：加载动作散落在整个程序生命周期内，累计起来花费时间很长
       - 不足之处2：会增加可执行代码长度（字节码要比及时编译器展开后的本地代码小很多），因此这可能会导致页面调度，降低了程序速度。
     - 另一种方式的惰性评估。即编译器只在必要时才编译代码。代码每次执行的时候都会做一些优化，因此执行的次数越多，它的速度就越快。
-- 91
+
+## 可变参数
+
+- 一个很重要的作用就是可以把它当作一个可选的参数。
+
+  `show(Integer... ints)`
+
+  `show(String... strs)`
+
+  同时出现时，因为`...`允许使用0个参数，此时编译器将不知道调用这两者的哪一个
+
+  因此可以表示为
+
+  `show(Integer, Integer... ints)`
+
+  ``show(String, String... strs)``
+
+## 一个枚举的示例
+
+```java
+public enum Size {
+    SMALL, MEDIUM, LARGE, Super
+}
+```
+
+```java
+public class UseSize {
+    public static void main(String[] args) {
+        Size size = Size.LARGE;
+        System.out.println(size);
+    }
+}
+```
