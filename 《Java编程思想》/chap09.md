@@ -101,6 +101,42 @@
   ```
 
   注意最下面展示的是错误的。因为前面两个接口有相同的方法（相同的方法名和参数列表），但是返回值类型不同。因此会造成冲突。这同样会造成代码可读性的混乱。要尽量避免。
+  
+- 为了解决接口的修改与现有的实现不兼容的问题。新`interface`的方法可以用`default`或`static`修饰，这样可以有方法体，实现类也不用重写此方法。
+
+  - `default`：普通实例方法，可以用`this`调用，可以被子类继承重写。
+  - `static`：使用上和一般静态类方法一样，但不能被字类继承，使用使用`Interface`调用。
+
+  ```java
+  public interface InterfaceDemo {
+      // static method
+      static void showName(){
+          System.out.println("My name is kingdeguo");
+      }
+      // default method
+      default void showInfo(){
+          System.out.println("This is a default method");
+      }
+      // must be override
+      void showAge(int age);
+  }
+  ```
+
+  ```java
+  public class UseInterface implements InterfaceDemo {
+      @Override
+      public void showAge(int age) {
+          System.out.println("I am " + age + " years old.");
+      }
+  
+      public static void main(String[] args) {
+          InterfaceDemo.showName();
+          UseInterface useInterface = new UseInterface();
+          useInterface.showAge(18);
+          useInterface.showInfo();
+      }
+  }
+  ```
 
 ## 嵌套接口
 
