@@ -18,4 +18,4 @@
 
 ## 示例
 
-- 原型模式中对克隆的运用。
+- [原型模式](https://github.com/KingdeGuo/myDesignPatternsNotes/blob/main/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.md)中对克隆的运用。
