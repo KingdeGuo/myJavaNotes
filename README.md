@@ -125,3 +125,15 @@
 
 ## 内容补充
 
+[克隆](https://github.com/KingdeGuo/myJavaNotes/blob/main/supplement/clone.md)
+
+[集合](https://github.com/KingdeGuo/myJavaNotes/blob/main/supplement/Collections.md)
+
+[分布式](https://github.com/KingdeGuo/myJavaNotes/blob/main/supplement/distributed.md)
+
+[编程习惯](https://github.com/KingdeGuo/myJavaNotes/blob/main/supplement/habit.md)
+
+[基础](https://github.com/KingdeGuo/myJavaNotes/blob/main/supplement/JavaBasics.md)
+
+[面向对象](https://github.com/KingdeGuo/myJavaNotes/blob/main/supplement/Object-oriented.md)
+
